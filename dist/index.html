@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gradient-background:hover{
+            background: linear-gradient(300deg, #233dff, #ff00e6d2, #ff0f0f);
+            background-size: 400% 400%;
+            animation: gradient-animation 4s ease infinite;
+        }
+        .gradient-background{
+            background-color: ghostwhite;
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .ripple {
+            width: 5px;
+            height: 5px;
+            background-color: transparent;
+            position: fixed;
+            border-radius: 50%;
+            border: 1px solid #fffb79;
+            }
+
+        @keyframes ripple-effect {
+            to {
+                transform:scale(15);
+                opacity: 0.01;
+            }
+            }
+    </style>
+    <title>Document</title>
+</head>
+<body style="font-family: 'Metrophobic', sans-serif;">
+    <div id="container" class="w-full h-11">
+        <div id="bg" class="bg-slate-900 w-full h-screen flex justify-center items-center">
+            <div id="calc" class="border-white border-2 rounded-2xl w-5/6 flex p-5 flex-col justify-around items-center gap-2 h-5/6 bg-gray-950 rounded-t-2xl sm:h-5/6 sm:w-2/6 select-none">
+                <div id="screen" class="flex h-2/6 w-full px-1">
+                    <!-- <div id="dispScr" class="bg-white flex shrink overflow-y-hidden overflow-x-auto whitespace-nowrap justify-end mx-0 mb-14 h-full w-full rounded-t-2xl rounded-b-lg text-right align-text-bottom text-4xl">0</div> -->
+                    <input id="dispScr" type="" class="w-full rounded-b-lg rounded-t-2xl text-4xl" readonly>
+                </div>
+                <div id="buttons" class="flex flex-col justify-evenly items-stretch gap-5 w-full h-5/6 text-3xl text-yellow-400">
+                    <div id="b-row1" class=" flex w-full gap-2 justify-around">
+                        <div id="ac" class="flex justify-center items-center bunton hover:cursor-pointer p-2 h-14 w-14 rounded-full border-slate-700 border-2 button  bg-slate-100 text-black hover:shadow-2xl hover:shadow-white hover:bg-slate-200 duration-400 text-xl">AC</div>
+                        <div id="del" class="flex justify-center items-center bunton hover:cursor-pointer p-2 h-14 w-14 rounded-full border-slate-700 border-2 button  bg-slate-100 text-black hover:shadow-2xl hover:shadow-white hover:bg-slate-200 duration-400  text-xl">DEL</div>
+                        <div id="%" class="flex justify-center items-center bunton hover:cursor-pointer p-2 h-14 w-14 rounded-full border-slate-700 border-2 button  bg-slate-100 text-black hover:shadow-2xl hover:shadow-white hover:bg-slate-200 duration-400 ">%</div>
+                        <div id="/" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-yellow-200 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-slate-700 border-2 button  bg-yellow-400 text-black">÷</div>
+                    </div>
+                    <div id="b-row2" class=" flex w-full gap-2 justify-around" class=" flex w-full gap-2 justify-around">
+                        <div id="7" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700">7</div>
+                        <div id="8" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700">8</div>
+                        <div id="9" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700">9</div>
+                        <div id="*" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-yellow-200 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-slate-700 border-2 button  bg-yellow-400 text-black">x</div>
+                    </div>
+                    <div id="b-row3" class=" flex w-full gap-2 justify-around">
+                        <div id="4" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700">4</div>
+                        <div id="5" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700">5</div>
+                        <div id="6" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700">6</div>
+                        <div id="-" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-yellow-200 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-slate-700 border-2 button  bg-yellow-400 text-black">-</div>
+                    </div>
+                    <div id="b-row4" class=" flex w-full gap-2 justify-around">
+                        <div id="1" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700">1</div>
+                        <div id="2" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2  bg-gray-700">2</div>
+                        <div id="3" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700">3</div>
+                        <div id="+" class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-yellow-200 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-slate-700 border-2 button  bg-yellow-400 text-black">+</div>
+                        
+                    </div>
+                    <div id="b-row5" class=" flex w-full gap-2 justify-around">
+                        
+                        <div class="flex w-1/2 gap-6 justify-around pl-2">
+                            <div id="0"  class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700 flex-3">0</div>
+                            <div id="." class="flex justify-center items-center bunton hover:shadow-2xl hover:shadow-yellow-200 hover:bg-slate-600 duration-400 hover:cursor-pointer p-2 h-14 w-14 rounded-full border-amber-200 border-2 button  bg-gray-700 flex-3">.</div>
+                        </div>
+                        <div class="flex w-1/2 px-2">
+                            <div id="=" class="flex justify-center items-center bunton hover:shadow-xl hover:shadow-pink-300 hover:cursor-pointer p-2 h-12 w-full rounded-full border-slate-300 hover:border-black border-2 button text-black text-5xl 
+                            gradient-background">=</div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let total="";
+        let isPrevAns=false;
+        let prevAns;
+        let calc;
+        let ans;
+        let index=0;
+       
+        //ripple effect
+        document.onclick = () => applyCursorRippleEffect(event); 
+            function applyCursorRippleEffect(e) {
+            const ripple = document.createElement("div");
+
+            ripple.className = "ripple";
+            document.body.appendChild(ripple);
+
+            ripple.style.left = `${e.clientX}px`;
+            ripple.style.top = `${e.clientY}px`; 
+
+            ripple.style.animation = "ripple-effect .4s  linear";
+            ripple.onanimationend = () => document.body.removeChild(ripple);
+
+            }
+
+        //calculations
+        document.querySelector("#dispScr").value=total;
+        document.querySelector('#buttons').addEventListener('click',(e)=>{
+            console.log(total)
+            
+            isPrevAns=false;
+            if(!(isPrevAns && (total==="") && ((e.target.id==="+")||(e.target.id==="-")||(e.target.id==="*")||(e.target.id==="/")))){
+                isPrevAns=false;
+
+            }
+            if(e.target.id==="b-row5"||e.target.id==="b-row4"||e.target.id==="b-row3"||e.target.id==="b-row2"||e.target.id==="b-row1"||e.target.id==="buttons"||e.target.id===""){
+                return;
+            }
+            id=e.target.id
+            if(id==="0"||id==="1"||id==="2"||id==="3"||id==="4"||id==="5"||id==="6"||id==="7"||id==="8"||id==="9"||id==="+"||id==="-"||id==="*"||id==="/"||id==="."){
+                if(total==="" && document.getElementById('dispScr').value==""){
+                    calc=id;
+                    total=id;
+                }
+                else
+                {
+                    total+=id;
+                }
+                document.querySelector("#dispScr").value=total;
+            }
+            else if(id==="%"){
+                if(total!==""){
+                    total=parseInt(document.querySelector("#dispScr").value)/100;
+                    document.querySelector("#dispScr").value=total;
+                }
+            }
+            else if(id==="ac")
+            {
+                total="";
+                document.querySelector("#dispScr").value=total;
+            }
+            else if(id==="del")
+            {
+                total=total.substring(0, total.length - 1)
+                document.querySelector("#dispScr").value=total;
+            }
+            else if(id==="="){
+                if(total==="")
+                {
+                    document.querySelector("#dispScr").value=`Enter some numbers`;
+                }
+                else{
+                    if(!isPrevAns){
+                    try {
+                        ans=eval(total);
+                        isPrevAns=true;
+                prevAns=ans;
+                document.querySelector("#dispScr").value=`${ans}`;
+                total="";
+                    } catch (error) {
+                        ans=error;
+                        isPrevAns=true;
+                prevAns=ans;
+                document.querySelector("#dispScr").value=`${ans}`;
+                total="";
+                    }
+                }
+                else{
+                    try {
+                    ans=eval(`${prevAns}${total}`);
+                    isPrevAns=true;
+                prevAns=ans;
+                document.querySelector("#dispScr").value=`${ans}`;
+                total="";
+                } catch (error) {
+                    ans=error;
+                    isPrevAns=true;
+                prevAns=ans;
+                document.querySelector("#dispScr").value=`${ans}`;
+                total="";
+                }
+                }
+                
+                }
+            
+            }
+        })
+        
+    </script>  
+</body>
+</html>
